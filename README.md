@@ -24,3 +24,9 @@ sudo mount -t cifs //server_name/shared_folder /mnt/shared -o username=your_user
 ```
 Replace server_name with the name or IP address of your Windows machine, shared_folder with the name of the shared folder, and your_username and your_password with the appropriate credentials.
 
+## Step 5: Test the Mount
+To verify that the shared folder is mounted correctly, you can list the contents of the mount point:
+
+```bash
+ls /mnt/shared
+```
