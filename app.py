@@ -71,5 +71,31 @@ def upload_image():
         return jsonify({"error": str(e)}), 500
 
 
+@app.route("/next-filename", methods=["GET"])
+def get_next_filename():
+    try:
+        subfolder = request.args.get("subfolder")
+        printer_id = request.args.get("printer_id")
+
+        if not subfolder:
+            return jsonify({"error": "No subfolder provided"}), 400
+
+        if not printer_id:
+            return jsonify({"error": "No printer_id provided"}), 400
+
+        save_dir = f"/mnt/shared/{subfolder}"
+        filename = f"{printer_id}.png"
+        if not os.path.exists(save_dir):
+            os.makedirs(save_dir)
+
+        incremented_filename = get_incremented_filename(save_dir, filename)
+        base_filename = os.path.splitext(incremented_filename)[0]
+
+        return jsonify({"next_filename": base_filename}), 200
+    except Exception as e:
+        print(e)
+        return jsonify({"error": str(e)}), 500
+
+
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=5000, debug=True)
