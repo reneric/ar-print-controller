@@ -15,10 +15,10 @@ logging.basicConfig(level=logging.DEBUG)
 
 def get_incremented_filename(directory, filename):
     base, ext = os.path.splitext(filename)
-    counter = 1
+    counter = 2
     new_filename = filename
     while os.path.exists(os.path.join(directory, new_filename)):
-        new_filename = f"{base}{counter}{ext}"
+        new_filename = f"{base}_{counter}{ext}"
         counter += 1
     return new_filename
 
