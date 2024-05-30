@@ -43,12 +43,14 @@ sudo nano /etc/systemd/system/mount-shared.service
 ```bash
 [Unit]
 Description=Mount Shared Drive
-After=network.target
+After=network-online.target
+Wants=network-online.target
 
 [Service]
 Type=oneshot
-ExecStart=/usr/bin/mount -t cifs //192.168.10.190/F1_Drop_Main /mnt/shared -o credentials=/etc/samba/creds --verbose
-ExecStop=/usr/bin/umount /mnt/shared
+ExecStartPre=/usr/bin/sudo /bin/mkdir -p /mnt/shared
+ExecStart=/usr/bin/sudo /bin/mount -t cifs //192.168.10.190/F1_Drop_Main /mnt/shared -o credentials=/etc/samba/creds --verbose
+ExecStop=/usr/bin/sudo /bin/umount /mnt/shared
 RemainAfterExit=yes
 
 [Install]
@@ -105,7 +107,7 @@ df -h /mnt/shared
 1. Create the service file
 
 ```bash
-sudo nano /etc/systemd/system/mount-shared.service
+sudo nano /etc/systemd/system/ar-print-controller.service
 ```
 
 2. Add the configuration
