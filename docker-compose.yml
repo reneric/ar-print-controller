@@ -5,4 +5,4 @@ services:
     ports:
       - "2001:5000"
     volumes:
-      - /mnt/shared:/mnt/shared
+      - ~/mnt/shared:/mnt/shared

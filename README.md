@@ -48,9 +48,10 @@ Wants=network-online.target
 
 [Service]
 Type=oneshot
-ExecStartPre=/usr/bin/sudo /bin/mkdir -p /mnt/shared
-ExecStart=/usr/bin/sudo /bin/mount -t cifs //192.168.10.190/F1_Drop_Main /mnt/shared -o credentials=/etc/samba/creds --verbose
-ExecStop=/usr/bin/sudo /bin/umount /mnt/shared
+ExecStartPre=/usr/bin/sleep 10
+ExecStartPre=/usr/bin/mkdir -p /mnt/shared
+ExecStart=/usr/bin/mount -t cifs //192.168.10.190/F1_Drop_Main /mnt/shared -o credentials=/etc/samba/creds,uid=1000,gid=1000,iocharset=utf8,vers=3.0 --verbose
+ExecStop=/usr/bin/umount /mnt/shared
 RemainAfterExit=yes
 
 [Install]
