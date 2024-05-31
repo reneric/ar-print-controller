@@ -33,7 +33,7 @@ ls /mnt/shared
 
 ## Step 6: Boot Services
 ### Mount Shared Service
-1. Create the service file
+1. Edit the fstab
 
 ```bash
 sudo nano /etc/systemd/system/mount-shared.service
@@ -74,30 +74,41 @@ password=<password>
 sudo chmod 600 /etc/samba/creds
 ```
 
-6. Reload the daemon
+6. Edit the fstab
+
+```bash
+sudo nano /etc/fstab
+```
+
+7. Add the mount and save
+```bash
+//192.168.10.190/F1_Drop_Main /mnt/shared cifs credentials=/etc/samba/creds,uid=1000,gid=1000,iocharset=utf8,vers=3.0 0 0
+```
+
+8. Reload the daemon
 
 ```bash
 sudo systemctl daemon-reload
 ```
 
-7. Enable the service
+9. Enable the service
 
 ```bash
 sudo systemctl enable mount-shared.service
 ```
 
-8. Start the service
+10. Start the service
 
 ```bash
 sudo systemctl start mount-shared.service
 ```
 
-9. Check the status
+11. Check the status
 ```bash
 systemctl status mount-shared.service
 ```
 
-10. Verify the mount point
+12. Verify the mount point
 ```bash
 df -h /mnt/shared
 ```
