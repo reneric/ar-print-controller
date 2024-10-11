@@ -4,7 +4,7 @@ After=network.target
 
 [Service]
 Type=oneshot
-ExecStart=/usr/bin/mount -t cifs //192.168.10.190/F1_Drop_Main /mnt/shared -o credentials=/etc/samba/creds --verbose
+ExecStart=/usr/bin/mount -t cifs //192.168.10.190/F1_Austin /mnt/shared -o credentials=/etc/samba/creds --verbose
 ExecStop=/usr/bin/umount /mnt/shared
 RemainAfterExit=yes
 

@@ -50,7 +50,7 @@ Wants=network-online.target
 Type=oneshot
 ExecStartPre=/usr/bin/sleep 10
 ExecStartPre=/usr/bin/mkdir -p /mnt/shared
-ExecStart=/usr/bin/mount -t cifs //192.168.10.190/F1_Drop_Main /mnt/shared -o credentials=/etc/samba/creds,uid=1000,gid=1000,iocharset=utf8,vers=3.0 --verbose
+ExecStart=/usr/bin/mount -t cifs //192.168.10.190/F1_Austin /mnt/shared -o credentials=/etc/samba/creds,uid=1000,gid=1000,iocharset=utf8,vers=3.0 --verbose
 ExecStop=/usr/bin/umount /mnt/shared
 RemainAfterExit=yes
 
@@ -82,7 +82,7 @@ sudo nano /etc/fstab
 
 7. Add the mount and save
 ```bash
-//192.168.10.190/F1_Drop_Main /mnt/shared cifs credentials=/etc/samba/creds,uid=1000,gid=1000,iocharset=utf8,vers=3.0 0 0
+//192.168.10.190/F1_Austin /mnt/shared cifs credentials=/etc/samba/creds,uid=1000,gid=1000,iocharset=utf8,vers=3.0 0 0
 ```
 
 8. Reload the daemon
